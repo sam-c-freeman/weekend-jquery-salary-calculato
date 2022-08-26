@@ -41,7 +41,21 @@ function collectEmployeeData (){
         annualSalary: $('#annual-salary').val(),
     }
     employees.push(newEmployee);
+    emptyEmployeeInputs();
+    // addEmployeeToDom();
 }
+
+function emptyEmployeeInputs(){
+    $('#first-name').val('');
+    $('#last-name').val('');
+    $('#id-number').val('');
+    $('#job-title').val('');
+    $('#annual-salary').val('');
+}
+
+// function addEmployeeToDom();
+//need to write above code block
+
 
 
 //   for (let employee of employees){
