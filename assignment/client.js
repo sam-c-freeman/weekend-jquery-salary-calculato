@@ -42,7 +42,7 @@ function collectEmployeeData (){
     }
     employees.push(newEmployee);
     emptyEmployeeInputs();
-    // addEmployeeToDom();
+    addEmployeeToDom();
 }
 
 function emptyEmployeeInputs(){
@@ -53,11 +53,17 @@ function emptyEmployeeInputs(){
     $('#annual-salary').val('');
 }
 
-// function addEmployeeToDom();
-//need to write above code block
-
-
-
-//   for (let employee of employees){
-//     console.log(employee);
-// } //Not needed?
+function addEmployeeToDom(){
+    $('#tableBody').empty();
+    for (let employee of employees){
+        $('#tableBody').append(`
+            <tr>
+                <td>${employee.firstName}</td>
+                <td>${employee.lastName}</td>
+                <td>${employee.idNumber}</td>
+                <td>${employee.jobTitle}</td>
+                <td>${employee.annualSalary}</td>
+            </tr>
+        `)
+    }
+}
