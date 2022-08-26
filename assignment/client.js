@@ -29,9 +29,21 @@ const employees = [employeeOne, employeeTwo, employeeThree];
 
 $(document).ready(readyNow);
 function readyNow() {
-    ()
+    $('#submitButton').on('click', collectEmployeeData);
   }
 
-for (let employee of employees){
-    console.log(employee);
+function collectEmployeeData (){
+    let newEmployee = {
+        firstName: $('#first-name').val(),
+        lastName: $('#last-name').val(),
+        idNumber: $('#id-number').val(),
+        jobTitle: $('#job-title').val(),
+        annualSalary: $('#annual-salary').val(),
+    }
+    employees.push(newEmployee);
 }
+
+
+//   for (let employee of employees){
+//     console.log(employee);
+// } //Not needed?
