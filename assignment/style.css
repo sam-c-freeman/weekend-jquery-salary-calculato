@@ -9,9 +9,17 @@ h1 {
     color: #F7F7F7;
   }
 
+  #inputSection{
+    margin-bottom: 50px;
+  }
+
+  table{
+    margin-top: 10px;
+  }
   th, td {
     text-align: left;
     padding: 8px;
+    
   }
 
   th {
