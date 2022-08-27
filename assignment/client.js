@@ -79,7 +79,14 @@ function addEmployeeMonthlyCost(){
     }
     $('#total-monthly').empty();
     $('#total-monthly').append(monthlyTotalExpenses);
+    checkIfOverBudget(monthlyTotalExpenses);
 
+}
+
+function checkIfOverBudget (monthlyTotalExpenses){
+    if(monthlyTotalExpenses >= 20000){
+        $('footer').css("background-color", "#8b0000");
+    } //add else for later when subtracting?
 }
 
 //Notes: would like to add code to incldue a comma in money
