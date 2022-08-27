@@ -93,7 +93,9 @@ function addEmployeeMonthlyCost(){
 function checkIfOverBudget (monthlyTotalExpenses){
     if(monthlyTotalExpenses >= 20000){
         $('footer').css("background-color", "#8b0000");
-    } //add else for later when subtracting?
+    } else{
+        $('footer').css("background-color", "#325ed5");
+    }
 }
 
 function deleteEmployee (){
@@ -104,13 +106,13 @@ function deleteEmployee (){
         return employee.idNumber === employeeClicked;
       });
       employees.splice(index, 1);
-      console.log(employees); 
-
     
     // let newEmployeeArray = employees.filter(employee => employee.idNumber !== employeeClicked);
     // console.log(newEmployeeArray);
     $(this).parent().parent().remove();
     addEmployeeMonthlyCost();
+    checkIfOverBudget();
+    //it does not update the DOM CSS when it goes back below?
     return employees;
     //it does not actually delete from original array
 }
