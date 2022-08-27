@@ -32,7 +32,7 @@ const employees = [];
 $(document).ready(readyNow);
 function readyNow() {
     $('#submitButton').on('click', collectEmployeeData);
-    $(document).on('click', '#tableBody', deleteEmployee);
+    // $(document).on('click', '#tableBody', deleteEmployee);
   }
 
 function collectEmployeeData (){
@@ -62,7 +62,7 @@ function addEmployeeToDom(){
     $('#tableBody').empty();
     for (let employee of employees){
         $('#tableBody').append(`
-            <tr>
+            <tr class="employee">
                 <td>${employee.firstName}</td>
                 <td>${employee.lastName}</td>
                 <td>${employee.idNumber}</td>
@@ -71,6 +71,7 @@ function addEmployeeToDom(){
                 <td><button id="delete-button">Delete</button></td>
             </tr>
         `)
+        $('.employee:last').on('click', deleteEmployee);
     }
 }
 
@@ -96,6 +97,7 @@ function deleteEmployee (){
     // console.log(employeeClicked); 
     //Above doesn't capture value.  Deleted class it html
     $(this).remove();
+    //it does not actually delete from empty array
 }
 
 //Notes: would like to add code to incldue a comma in money
