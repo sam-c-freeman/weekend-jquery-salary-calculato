@@ -69,6 +69,7 @@ function collectEmployeeData (){
     emptyEmployeeInputs(); //clears inputs
     addEmployeeToDom(); //apends employee to table
     addEmployeeMonthlyCost(); //function to calculate total monthly costs
+    $('#error-message').empty();
 }
 function emptyEmployeeInputs(){
     $('#first-name').val('');
@@ -128,6 +129,7 @@ function deleteEmployee (){
     $(this).parent().parent().remove();
     addEmployeeMonthlyCost();
     checkIfOverBudget();
+    $('#error-message').empty();
     //it does not update the DOM CSS when it goes back below?
     return employees;
     //it does not actually delete from original array

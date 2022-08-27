@@ -22,16 +22,19 @@ body{
 /* fix styling above header h1? */
 
   #inputSection, h2{
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     margin-left: 15px;
     font-size: 1.5em;
   }
 
-  p, #error-message{
-    text-align: right;
-    margin-right: 125px;
-    font-size: 1em;
+ #error-message{
+  margin-top: 0;
+ } 
+  p{
+    text-align: center;
+    font-size: 1.25em;
     color: red;
+    margin-top:20px;
   }
 
   input{
