@@ -32,6 +32,7 @@ const employees = [];
 $(document).ready(readyNow);
 function readyNow() {
     $('#submitButton').on('click', collectEmployeeData);
+    $(document).on('click', '#tableBody', deleteEmployee);
   }
 
 function collectEmployeeData (){
@@ -67,6 +68,7 @@ function addEmployeeToDom(){
                 <td>${employee.idNumber}</td>
                 <td>${employee.jobTitle}</td>
                 <td>${employee.annualSalary}</td>
+                <td><button id="delete-button">Delete</button></td>
             </tr>
         `)
     }
@@ -87,6 +89,13 @@ function checkIfOverBudget (monthlyTotalExpenses){
     if(monthlyTotalExpenses >= 20000){
         $('footer').css("background-color", "#8b0000");
     } //add else for later when subtracting?
+}
+
+function deleteEmployee (){
+    // let employeeClicked = $(this).attr('class');
+    // console.log(employeeClicked); 
+    //Above doesn't capture value.  Deleted class it html
+    $(this).remove();
 }
 
 //Notes: would like to add code to incldue a comma in money
