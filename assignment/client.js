@@ -32,7 +32,7 @@ const employees = [];
 $(document).ready(readyNow);
 function readyNow() {
     $('#submitButton').on('click', collectEmployeeData);
-    // $(document).on('click', '#tableBody', deleteEmployee);
+    $(document).on('click', '.delete', deleteEmployee);
   }
 
 function collectEmployeeData (){
@@ -45,6 +45,10 @@ function collectEmployeeData (){
         annualSalary: $('#annual-salary').val(),
         monthlySalary: Number(monthlySalary),
     }
+    
+//how can I save something at this step so as to append it to the div uniquely?
+
+   
     employees.push(newEmployee); //pushes to employee array
     emptyEmployeeInputs(); //clears inputs
     addEmployeeToDom(); //apends employee to table
@@ -62,13 +66,13 @@ function addEmployeeToDom(){
     $('#tableBody').empty();
     for (let employee of employees){
         $('#tableBody').append(`
-            <tr class="employee">
+            <tr>
                 <td>${employee.firstName}</td>
                 <td>${employee.lastName}</td>
                 <td>${employee.idNumber}</td>
                 <td>${employee.jobTitle}</td>
                 <td>${employee.annualSalary}</td>
-                <td><button id="delete-button">Delete</button></td>
+                <td><button id="delete-button" class="delete ${employee.idNumber}">Delete</button></td>
             </tr>
         `)
         $('.employee:last').on('click', deleteEmployee);
@@ -93,13 +97,22 @@ function checkIfOverBudget (monthlyTotalExpenses){
 }
 
 function deleteEmployee (){
-    let employeeClicked = $('.employee').text();
-    console.log(employeeClicked[0]);
+    //this code captures the class of the unique employee
+    //by only storing the class after general class
+    let employeeClicked = $(this).attr('class').split(' ')[1];
+    const index = employees.findIndex(employee => {
+        return employee.idNumber === employeeClicked;
+      });
+      employees.splice(index, 1);
+      console.log(employees); 
 
-    // console.log(employeeClicked); 
-    //Above doesn't capture value.  Deleted class it html
-    // $(this).remove();
-    //it does not actually delete from empty array
+    
+    // let newEmployeeArray = employees.filter(employee => employee.idNumber !== employeeClicked);
+    // console.log(newEmployeeArray);
+
+    $(this).parent().parent().remove();
+    return employees;
+    //it does not actually delete from original array
 }
 
 //Notes: would like to add code to incldue a comma in money
