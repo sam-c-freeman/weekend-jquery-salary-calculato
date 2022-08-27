@@ -93,10 +93,12 @@ function checkIfOverBudget (monthlyTotalExpenses){
 }
 
 function deleteEmployee (){
-    // let employeeClicked = $(this).attr('class');
+    let employeeClicked = $('.employee').text();
+    console.log(employeeClicked[0]);
+
     // console.log(employeeClicked); 
     //Above doesn't capture value.  Deleted class it html
-    $(this).remove();
+    // $(this).remove();
     //it does not actually delete from empty array
 }
 

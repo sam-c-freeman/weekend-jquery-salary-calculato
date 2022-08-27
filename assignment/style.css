@@ -10,9 +10,10 @@ body{
 #headerh1 {
     margin: 0;
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     font-weight: 400;
+    font-size: 3em;
     width: 100%;
     background-color: #325ed5;
     color: #F7F7F7;
@@ -20,9 +21,30 @@ body{
 
 /* fix styling above header h1? */
 
-  #inputSection{
-    margin-bottom: 50px;
+  #inputSection, h2{
+    margin-bottom: 30px;
     margin-left: 15px;
+    font-size: 1.5em;
+  }
+
+  input{
+    border-radius: 10px;
+    padding: 20px;
+    margin: 5px;
+  }
+
+  input::-webkit-input-placeholder{
+    font-size: 1.25em;
+  }
+
+  #submitButton{
+    border-radius: 10px;
+    padding: 20px 50px;
+    margin: 5px;
+    font-size: .75em;
+    background-color: #2C3852;
+    color: white;
+    
   }
 
   table{
@@ -31,6 +53,7 @@ body{
   th, td {
     text-align: left;
     padding: 8px;
+    font-size: 20px;
     
   }
 
@@ -68,7 +91,7 @@ body{
 
   #footerh1{
     text-align: right;
-    margin-right: 50px;
+    margin-right: 100px;
   }
 
 
