@@ -44,9 +44,10 @@ function collectEmployeeData (){
         annualSalary: $('#annual-salary').val(),
         monthlySalary: Number(monthlySalary),
     }
-    employees.push(newEmployee);
-    emptyEmployeeInputs();
-    addEmployeeToDom();
+    employees.push(newEmployee); //pushes to employee array
+    emptyEmployeeInputs(); //clears inputs
+    addEmployeeToDom(); //apends employee to table
+    addEmployeeMonthlyCost(); //function to calculate total monthly costs
 }
 function emptyEmployeeInputs(){
     $('#first-name').val('');
@@ -70,3 +71,15 @@ function addEmployeeToDom(){
         `)
     }
 }
+
+function addEmployeeMonthlyCost(){
+    let monthlyTotalExpenses = 0;
+    for (let employee of employees){
+        monthlyTotalExpenses += employee.monthlySalary;
+    }
+    $('#total-monthly').empty();
+    $('#total-monthly').append(monthlyTotalExpenses);
+
+}
+
+//Notes: would like to add code to incldue a comma in money
