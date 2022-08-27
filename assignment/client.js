@@ -109,8 +109,8 @@ function deleteEmployee (){
     
     // let newEmployeeArray = employees.filter(employee => employee.idNumber !== employeeClicked);
     // console.log(newEmployeeArray);
-
     $(this).parent().parent().remove();
+    addEmployeeMonthlyCost();
     return employees;
     //it does not actually delete from original array
 }
