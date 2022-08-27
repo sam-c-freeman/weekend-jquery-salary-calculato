@@ -31,9 +31,25 @@ const employees = [];
 
 $(document).ready(readyNow);
 function readyNow() {
-    $('#submitButton').on('click', collectEmployeeData);
+    // $('#submitButton').on('click', collectEmployeeData);
+    $('#submitButton').on('click', emptyCheck);
     $(document).on('click', '.delete', deleteEmployee);
   }
+
+  function emptyCheck(){
+    if($('#first-name').val() == '' || $('#last-name').val() == '' || $('#id-number').val() == '' || $('#job-title').val() == '' || $('#annual-salary').val() == ''){
+      // return false;
+      displayErrorMessage(); 
+    } else
+    {
+      collectEmployeeData();
+    }
+  }
+
+  function displayErrorMessage(){
+    $('#error-message').append(`<p id="error-message">`+ `All Fields Required` + `</p>`);
+    }
+  
 
 function collectEmployeeData (){
     let monthlySalary = Math.round(($('#annual-salary').val()/12) * 100) / 100
