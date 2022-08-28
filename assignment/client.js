@@ -93,7 +93,14 @@ function addEmployeeToDom(){
             </tr>
         `)
         $('.employee:last').on('click', deleteEmployee);
+        //is the above code still needed (:last)?
     }
+    // $('#tfoot-below:last').append(`
+    //     <td id="tfoot" colspan="6"></td>
+    // `)
+
+    //This code adds a table footer multiple times. 
+    //I wanted it to only happen once
 }
 
 function addEmployeeMonthlyCost(){

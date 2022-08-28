@@ -102,6 +102,11 @@ body{
     font-size: 16px;
     cursor: pointer;
   }
+  #tfoot {
+    background-color: darkslategrey;
+    padding: 30px;
+    margin-top 5px;
+  }
 
   footer{
     margin-top: auto;
