@@ -12,9 +12,9 @@ To see my repository, please visit: [GitHub Repository](https://github.com/sam-c
 
 <img src="Salary-Calculator-Page-Load.png"/>
 ___
-@import "Salary-Calculator-With-Data.png"
+<img src="Salary-Calculator-With-Data.png"/>
 ___
-@import "Calculator-Over-Budget.png"
+<img src="Calculator-Over-Budget.png"/>
 
 
 ## Usage
