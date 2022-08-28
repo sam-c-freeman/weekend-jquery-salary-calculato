@@ -60,7 +60,21 @@ body{
   table{
     margin-top: 10px;
   }
-  th, td {
+  
+  tr:nth-child(odd){
+    background-color: white;
+  }
+
+  tr:nth-child(even){
+    background-color: blanchedalmond;
+  }
+
+  /* I don't love how this looks on the second
+  entry into the table.  The footer has auto padding 
+  because it is how I chose to get it to stay at the bottom
+  I think I would need to re-do a bit a of CSS to fix this */
+
+  td {
     text-align: left;
     padding: 8px;
     font-size: 20px;
@@ -69,6 +83,7 @@ body{
 
   th {
     background-color: darkslategrey;
+    text-align: left;
     color: white;
     font-size: 30px;
     padding: 10px;
