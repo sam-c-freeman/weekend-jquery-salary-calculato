@@ -6,14 +6,14 @@ _Tier 2/Week7_
 
 I was tasked with creating a salary calculator that collected and interpreted employee data.  On clicking the submit button, the app checks to confirm that all fields have been entered. If not, an error message is displayed on the DOM informing the user that all fields are required.  Upon receiving employee data, the app calculates the monthly portion of their annual salary and shows it at the bottom of the screen. If the company's monthly expenses exceed $20,000, that section of the app turns red. Employees can be added and deleted and all calculations update accordingly.
 
-To see my repository, please visit: [GitHub Repository](https://github.com/sam-c-freeman/weekend-jquery-salary-calculato)
+To see my repository, please visit: [GitHub Repository](https://github.com/sam-c-freeman/weekend-jquery-salary-calculator-final)
 
 ## Screen Shots
 
 <img src="Salary-Calculator-Page-Load.png"/>
-___
+
 <img src="Salary-Calculator-With-Data.png"/>
-___
+
 <img src="Calculator-Over-Budget.png"/>
 
 
