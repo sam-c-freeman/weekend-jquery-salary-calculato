@@ -1,5 +1,136 @@
-//add test employees here
-//add array here
+const employees = [];
+
+//On page load the below code adds a click handler to the 
+//submit and delete buttons
+
+$(document).ready(readyNow);
+function readyNow() {
+    $('#submitButton').on('click', emptyCheck);
+    $(document).on('click', '.delete', deleteEmployee);
+  }
+
+//the below codes makes all fields required.  If any
+//are left blank, the user cannot submit data
+
+  function emptyCheck(){
+    if($('#first-name').val() == '' || $('#last-name').val() == '' || $('#id-number').val() == '' || $('#job-title').val() == '' || $('#annual-salary').val() == ''){
+      // return false;
+      displayErrorMessage(); 
+    } else
+    {
+      collectEmployeeData();
+    }
+  }
+
+ //code for error message if fields are left empty
+  
+  function displayErrorMessage(){
+    $('#error-message').append(`<p id="error-message">`+ `All Fields Required` + `</p>`);
+    }
+  
+//the below code block collects employee data and creates 
+//a new object.  It also calculates their monthly salary
+//it also clears the error message if one is on the DOM
+
+function collectEmployeeData (){
+    let monthlySalary = Math.round(($('#annual-salary').val()/12) * 100) / 100
+    let newEmployee = {
+        firstName: $('#first-name').val(),
+        lastName: $('#last-name').val(),
+        idNumber: $('#id-number').val(),
+        jobTitle: $('#job-title').val(),
+        annualSalary: $('#annual-salary').val(),
+        monthlySalary: Number(monthlySalary),
+    }   
+    employees.push(newEmployee); //pushes to employee array
+    emptyEmployeeInputs(); //clears inputs
+    addEmployeeToDom(); //apends employee to table
+    addEmployeeMonthlyCost(); //function to calculate total monthly costs
+    $('#error-message').empty(); //clears error message from DOM
+}
+function emptyEmployeeInputs(){
+    $('#first-name').val('');
+    $('#last-name').val('');
+    $('#id-number').val('');
+    $('#job-title').val('');
+    $('#annual-salary').val('');
+}
+
+//the below code block adds the employee to the table
+function addEmployeeToDom(){
+    $('#tableBody').empty();
+    for (let employee of employees){
+        $('#tableBody').append(`
+            <tr>
+                <td>${employee.firstName}</td>
+                <td>${employee.lastName}</td>
+                <td>${employee.idNumber}</td>
+                <td>${employee.jobTitle}</td>
+                <td>${employee.annualSalary}</td>
+                <td><button id="delete-button" class="delete ${employee.idNumber}">Delete</button></td>
+            </tr>
+        `)
+        $('.employee:last').on('click', deleteEmployee);
+        //is the above code still needed (:last)?
+    }
+    // $('#tfoot-below:last').append(`
+    //     <td id="tfoot" colspan="6"></td>
+    // `)
+
+    //This code adds a table footer multiple times. 
+    //I wanted it to only happen once
+}
+
+
+//this calculates the total employee costs and appends
+//to DOM
+function addEmployeeMonthlyCost(){
+    let monthlyTotalExpenses = 0;
+    for (let employee of employees){
+        monthlyTotalExpenses += employee.monthlySalary;
+    }
+    $('#total-monthly').empty();
+    $('#total-monthly').append(monthlyTotalExpenses);
+    checkIfOverBudget(monthlyTotalExpenses);
+
+}
+
+
+//to calculate if over budget.
+//Yes-turns CSS red
+//back under? CSS turns back to original color
+function checkIfOverBudget (monthlyTotalExpenses){
+    if(monthlyTotalExpenses >= 20000){
+        $('footer').css("background-color", "#8b0000");
+    } else{
+        $('footer').css("background-color", "#325ed5");
+    }
+}
+
+//this code below captures the class of the unique employee
+//by only storing the class after general class
+//then it uses that info to find the index of that employee
+//in the employee array
+//then it splices the array, deleting only that employee
+//It then re-runs the several code blocks to update DOM
+function deleteEmployee (){
+    let employeeClicked = $(this).attr('class').split(' ')[1];
+    const index = employees.findIndex(employee => {
+        return employee.idNumber === employeeClicked;
+      });
+    employees.splice(index, 1);
+    $(this).parent().parent().remove();
+    addEmployeeMonthlyCost();
+    checkIfOverBudget();
+    $('#error-message').empty();
+    return employees;
+}
+
+//Notes: would like to add code to incldue a comma in money
+
+
+//below were employees used in early stages
+//of testing.  Moved down to be out of the way
 
 // const employeeOne = {
 //     firstName: 'Sam', 
@@ -26,120 +157,3 @@
 
 
 // const employees = [employeeOne, employeeTwo, employeeThree];
-
-const employees = [];
-
-$(document).ready(readyNow);
-function readyNow() {
-    // $('#submitButton').on('click', collectEmployeeData);
-    $('#submitButton').on('click', emptyCheck);
-    $(document).on('click', '.delete', deleteEmployee);
-  }
-
-  function emptyCheck(){
-    if($('#first-name').val() == '' || $('#last-name').val() == '' || $('#id-number').val() == '' || $('#job-title').val() == '' || $('#annual-salary').val() == ''){
-      // return false;
-      displayErrorMessage(); 
-    } else
-    {
-      collectEmployeeData();
-    }
-  }
-
-  function displayErrorMessage(){
-    $('#error-message').append(`<p id="error-message">`+ `All Fields Required` + `</p>`);
-    }
-  
-
-function collectEmployeeData (){
-    let monthlySalary = Math.round(($('#annual-salary').val()/12) * 100) / 100
-    let newEmployee = {
-        firstName: $('#first-name').val(),
-        lastName: $('#last-name').val(),
-        idNumber: $('#id-number').val(),
-        jobTitle: $('#job-title').val(),
-        annualSalary: $('#annual-salary').val(),
-        monthlySalary: Number(monthlySalary),
-    }
-    
-//how can I save something at this step so as to append it to the div uniquely?
-
-   
-    employees.push(newEmployee); //pushes to employee array
-    emptyEmployeeInputs(); //clears inputs
-    addEmployeeToDom(); //apends employee to table
-    addEmployeeMonthlyCost(); //function to calculate total monthly costs
-    $('#error-message').empty();
-}
-function emptyEmployeeInputs(){
-    $('#first-name').val('');
-    $('#last-name').val('');
-    $('#id-number').val('');
-    $('#job-title').val('');
-    $('#annual-salary').val('');
-}
-
-function addEmployeeToDom(){
-    $('#tableBody').empty();
-    for (let employee of employees){
-        $('#tableBody').append(`
-            <tr>
-                <td>${employee.firstName}</td>
-                <td>${employee.lastName}</td>
-                <td>${employee.idNumber}</td>
-                <td>${employee.jobTitle}</td>
-                <td>${employee.annualSalary}</td>
-                <td><button id="delete-button" class="delete ${employee.idNumber}">Delete</button></td>
-            </tr>
-        `)
-        $('.employee:last').on('click', deleteEmployee);
-        //is the above code still needed (:last)?
-    }
-    // $('#tfoot-below:last').append(`
-    //     <td id="tfoot" colspan="6"></td>
-    // `)
-
-    //This code adds a table footer multiple times. 
-    //I wanted it to only happen once
-}
-
-function addEmployeeMonthlyCost(){
-    let monthlyTotalExpenses = 0;
-    for (let employee of employees){
-        monthlyTotalExpenses += employee.monthlySalary;
-    }
-    $('#total-monthly').empty();
-    $('#total-monthly').append(monthlyTotalExpenses);
-    checkIfOverBudget(monthlyTotalExpenses);
-
-}
-
-function checkIfOverBudget (monthlyTotalExpenses){
-    if(monthlyTotalExpenses >= 20000){
-        $('footer').css("background-color", "#8b0000");
-    } else{
-        $('footer').css("background-color", "#325ed5");
-    }
-}
-
-function deleteEmployee (){
-    //this code captures the class of the unique employee
-    //by only storing the class after general class
-    let employeeClicked = $(this).attr('class').split(' ')[1];
-    const index = employees.findIndex(employee => {
-        return employee.idNumber === employeeClicked;
-      });
-      employees.splice(index, 1);
-    
-    // let newEmployeeArray = employees.filter(employee => employee.idNumber !== employeeClicked);
-    // console.log(newEmployeeArray);
-    $(this).parent().parent().remove();
-    addEmployeeMonthlyCost();
-    checkIfOverBudget();
-    $('#error-message').empty();
-    //it does not update the DOM CSS when it goes back below?
-    return employees;
-    //it does not actually delete from original array
-}
-
-//Notes: would like to add code to incldue a comma in money
