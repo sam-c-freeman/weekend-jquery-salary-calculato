@@ -100,7 +100,7 @@ function addEmployeeMonthlyCost(){
 //Yes-turns CSS red
 //back under? CSS turns back to original color
 function checkIfOverBudget (monthlyTotalExpenses){
-    if(monthlyTotalExpenses >= 20000){
+    if(monthlyTotalExpenses > 20000){
         $('footer').css("background-color", "#8b0000");
     } else{
         $('footer').css("background-color", "#325ed5");
